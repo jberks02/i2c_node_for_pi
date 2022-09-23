@@ -8,6 +8,7 @@
  *
  */
 #include "main.h"
+#include <stdio.h>
 using namespace std;
 
 class i2c_node {
@@ -29,17 +30,17 @@ class i2c_node {
     public: int getAddress() {
         return address;
     };
-    // public: int readCommanderMessage() {
+    public: std::string readCommanderMessage() {
         
-    //     uint messageLength = i2c_get_read_available(i2c1);
+        uint messageLength = i2c_get_read_available(i2c1);
 
-    //     uint8_t fullMessage[messageLength];
+        uint8_t fullMessage[messageLength];
 
-    //     i2c_read_raw_blocking (i2c1, fullMessage, messageLength);
+        i2c_read_raw_blocking (i2c1, fullMessage, messageLength);
 
     //     return *fullMessage;
 
-    // }
+    }
     private: bool reserved_addr(uint8_t addr) {
         return (addr & 0x78) == 0 || (addr & 0x78) == 0x78;
     };
